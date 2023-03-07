@@ -15,19 +15,22 @@
   <span v-show="seMuestra"> Lorem ipsum dolor sit amet.</span>
   <!-- Esto será display:block cuando seMuestra sea true, y será display:none cuando seMuestra sea false -->
 
+  <!--  EJEMPLO FOR -->
   <h3>Fruit List</h3>
   <ul>
     <li v-for = "(fruta , index) in arrayFrutas" :key="index"> {{ index  }} - {{ fruta }}   </li>
   </ul>
 
+  <!--  EJEMPLO V-FOR / V-IF -->
+
   <h3>Information about fruits</h3>
   <ul>
     <li v-for="(fruit, index) in arrayFruits" :key="fruit.name">
       <span v-if="fruit.stock > 20">  {{ index }} - {{ fruit.name }} - {{ fruit.price }} - {{ fruit.description }}</span>
-   
     </li>
   </ul>
 
+  <!-- EJEMPLO  V-FOR OBJETOS SIMPLES -->
 
   <h3>Information about one fruit</h3>
   <ul>
@@ -36,11 +39,28 @@
     </li>
   </ul>
 
+  <!-- EVENTO CLICK -->
+
   <button @click="handleClick">Click aquí</button>
+
+  <!-- MÉTODOS DE EVENTOS - MODIFICADORES -->
+
+  <button v-on:click.right="handleClickButton('Texto Right')">Activame rigth</button>
+  <button @click="handleClickButton('Texto Left')">Activame left</button>
+  <button @click.middle="handleClickButton('Texto Middle')">Activame middle</button>
+
+
+  <!-- REACTIVIDAD EXPLICADO CON UN CONTADOR -->
+
+  <button @click="increment">Aumentar</button>
+  <h2>{{ counter }}</h2>
+
 
 </template>
 
 <script setup>
+
+import { ref } from 'vue'
 
 const name = "Vue dinámico"
 const styleColor = "color: blue"
@@ -87,6 +107,20 @@ const objetoFruta = {
 const  handleClick = () => {
   console.log("Me diste click")
 };
+
+const handleClickButton = (message) => {
+  console.log(message)
+}
+
+// CONTADOR
+
+const counter = ref(0);
+
+const increment = () => {
+  console.log("Aumentar contador")
+  counter.value ++;
+}
+
 </script> 
 
 
